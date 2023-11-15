@@ -3,6 +3,7 @@ import Layout from "../../components/Layout/Layout";
 import { toast } from "react-toastify";
 import {useNavigate} from 'react-router-dom'
 import axios from "axios";
+import "../../styles/AuthStyles.css";
 const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -33,9 +34,9 @@ const Register = () => {
 console.log(process.env.REACT_APP_API);
   return (
     <Layout title="Register">
-      <div className="register">
-        <h1>Register page</h1>
+      <div className="form-container">
         <form onSubmit={handleSubmit}>
+        <h1>REGISTER FORM</h1>
           <div class="mb-3">
             <input
               type="text"
