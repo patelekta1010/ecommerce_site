@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import Layout from "../../components/Layout/Layout";
 import { toast } from "react-toastify";
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../../styles/AuthStyles.css";
 import { useAuth } from "../../context/auth";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [auth,setAuth] = useAuth()
-  const navigate = useNavigate()
+  const [auth, setAuth] = useAuth();
+  const navigate = useNavigate();
 
   // form function
   const handleSubmit = async (e) => {
@@ -17,32 +17,32 @@ const Login = () => {
     try {
       const res = await axios.post(
         `${process.env.REACT_APP_API}/api/v1/auth/login`,
-        { email,password  }
+        { email, password }
       );
-      if(res && res.data.success){
-        toast.success(res.data.message)
+      if (res && res.data.success) {
+        toast.success(res.data.message);
         setAuth({
-            ...auth,
-            user:res.data.user,
-            token:res.data.token
-        })
-        localStorage.setItem('auth',JSON.stringify(res.data))
-        navigate('/')
-      }else{
-        toast.error(res.data.message)
+          ...auth,
+          user: res.data.user,
+          token: res.data.token,
+        });
+        localStorage.setItem("auth", JSON.stringify(res.data));
+        navigate("/");
+      } else {
+        toast.error(res.data.message);
       }
     } catch (error) {
       console.log(error);
       toast.error("Something went wrong");
     }
   };
-console.log(process.env.REACT_APP_API);
+  console.log(process.env.REACT_APP_API);
   return (
     <Layout title="Register">
       <div className="form-container">
         <form onSubmit={handleSubmit}>
-        <h1>LOGIN FORM</h1>
-          
+          <h1>LOGIN FORM</h1>
+
           <div className="mb-3">
             <input
               type="email"
@@ -68,10 +68,9 @@ console.log(process.env.REACT_APP_API);
           </div>
 
           <button type="submit" className="btn btn-primary">
-             LOGIN
+            LOGIN
           </button>
         </form>
-
       </div>
     </Layout>
   );
