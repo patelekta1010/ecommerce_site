@@ -8,7 +8,7 @@ const Spinner = () => {
     const interval = setInterval(() => {
       setCount((prevValue) => --prevValue);
     }, 1000);
-    count === 0 && navigate("/login");
+    count === 0 && navigate('/login');
     return () => clearInterval(interval);
   }, [count, navigate]);
   return (

@@ -9,10 +9,10 @@ export default function PrivateRoute(){
     const [auth,setAuth] = useAuth()
     useEffect(()=>{
         console.log("ekta");
-
+      
         const authCheck = async()=>{
             console.log("private");
-            const res = await axios.get("/api/v1/auth/user-auth");
+            const res = await axios.get(`${process.env.REACT_APP_API}/api/v1/auth/user-auth`);
             console.log("res",res);
             if(res.data.ok){
                 setOk(true)
